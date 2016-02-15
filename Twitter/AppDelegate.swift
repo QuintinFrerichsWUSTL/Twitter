@@ -5,9 +5,8 @@
 //  Created by Quintin Frerichs on 2/14/16.
 //  Copyright © 2016 Quintin Frerichs. All rights reserved.
 //
-
+import BDBOAuth1Manager
 import UIKit
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -39,6 +38,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        TwitterClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential (queryString:url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
+            print("Got access token")
+            TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
+            TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+                print("user: \(response)")
+                }, failure: { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
+                    print("Another kind of failure")
+            })
+            TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response:  AnyObject?) -> Void in
+                print("status: \(response)")
+                }, failure: { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
+                    print("A different kind of failure")
+            })
+            
+            
+            }) { (error: NSError!) -> Void in
+                print("Failed to get access token")
+        }
+        return true
     }
 
 
