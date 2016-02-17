@@ -32,6 +32,17 @@ class TwitterClient: BDBOAuth1SessionManager {
                 self.loginCompletion?(user: nil, error: error)
         }
     }
+    func homeTimeLineWithParams(params: NSDictionary?, completion_: (tweets: [Tweet]?, error: NSError?)->()){
+        GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask!, response:  AnyObject?) -> Void in
+            //print("status: \(response)")
+            var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            completion_(tweets: tweets, error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
+                print("Failure to get twitter feed")
+                completion_(tweets: nil, error: error)
+        })
+
+    }
     func openURL(url: NSURL){
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential (queryString:url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
             print("Got access token")
@@ -40,20 +51,12 @@ class TwitterClient: BDBOAuth1SessionManager {
                 
                 //print("user: \(response)")
                 var user = User(dictionary: response as! NSDictionary)
+                User.currentUser = user 
                 print("user: \(user.name)")
+                self.loginCompletion?(user: user, error: nil)
                 }, failure: { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
                     print("Error getting the current user")
                     self.loginCompletion?(user: nil, error: error)
-            })
-            TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response:  AnyObject?) -> Void in
-                //print("status: \(response)")
-                var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-                for tweet in tweets{
-                    print("text: \(tweet.text), created: \(tweet.createdAt)")
-                }
-                
-                }, failure: { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
-                    print("A different kind of failure")
             })
             
             
