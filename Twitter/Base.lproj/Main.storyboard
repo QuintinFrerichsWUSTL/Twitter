@@ -45,7 +45,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="144" id="35I-dG-vWM" customClass="TwitterTableViewCell" customModule="Twitter" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwitterTableViewCell" rowHeight="144" id="35I-dG-vWM" customClass="TwitterTableViewCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="325" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="35I-dG-vWM" id="pxL-XU-J0e">
@@ -80,10 +80,10 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="profileImageView" destination="2GD-8a-acg" id="yKk-Ga-FZA"/>
-                                            <outlet property="timeLabel" destination="P5b-Qa-0kl" id="aSn-hU-poy"/>
-                                            <outlet property="tweetLabel" destination="vgh-yu-HEl" id="RJk-do-NR3"/>
-                                            <outlet property="usernameLabel" destination="Pc6-EM-Esv" id="KCi-UA-JUN"/>
+                                            <outlet property="profileImageView" destination="2GD-8a-acg" id="m2V-Ou-uyN"/>
+                                            <outlet property="timeLabel" destination="P5b-Qa-0kl" id="ySx-tG-tDl"/>
+                                            <outlet property="tweetLabel" destination="vgh-yu-HEl" id="fZX-AZ-EYS"/>
+                                            <outlet property="usernameLabel" destination="Pc6-EM-Esv" id="YAC-1w-Jfz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

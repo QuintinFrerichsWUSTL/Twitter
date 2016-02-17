@@ -10,15 +10,36 @@ import UIKit
 
 class TwitterTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var timeLabel: UILabel!
-    
-    @IBOutlet weak var profileImageView: UIImageView!
-    
-    @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var tweetLabel: UILabel!
-    
-    var tweet: Tweet! 
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    var tweet: Tweet!{
+        didSet{
+            if tweet.createdAtString != nil{
+            timeLabel.text = tweet.createdAtString
+            }
+            else{
+                timeLabel.text = nil
+            }
+            if tweet.profilepictureURl != nil{
+             profileImageView.setImageWithURL(tweet.profilepictureURl!)
+            }
+           
+            if tweet.username != nil{
+            usernameLabel.text = tweet.username
+            }
+            else{
+                usernameLabel.text = nil
+            }
+            if tweet.text != nil{
+            tweetLabel.text = tweet.text
+            }
+            else{
+                tweetLabel.text = nil
+            }
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

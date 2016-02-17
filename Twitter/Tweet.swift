@@ -14,7 +14,7 @@ class Tweet: NSObject {
     var createdAtString: String?
     var createdAt: NSDate?
     var username: String?
-    var profilepictureURl: String?
+    var profilepictureURl: NSURL?
     init(dictionary: NSDictionary){
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         username = user?.name
