@@ -16,12 +16,12 @@ class TwitterTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     var tweet: Tweet!{
         didSet{
-            if tweet.createdAtString != nil{
-            timeLabel.text = tweet.createdAtString
-            }
-            else{
-                timeLabel.text = nil
-            }
+//            if tweet.createdAtString != nil{
+//            timeLabel.text = tweet.createdAtString
+//            }
+//            else{
+//                timeLabel.text = nil
+//            }
             if tweet.profilepictureURl != nil{
              profileImageView.setImageWithURL(tweet.profilepictureURl!)
             }
@@ -34,6 +34,7 @@ class TwitterTableViewCell: UITableViewCell {
             }
             if tweet.text != nil{
             tweetLabel.text = tweet.text
+            tweetLabel.sizeToFit()
             }
             else{
                 tweetLabel.text = nil
@@ -42,6 +43,10 @@ class TwitterTableViewCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        profileImageView.layer.cornerRadius = 3
+        profileImageView.clipsToBounds = true
+        usernameLabel.preferredMaxLayoutWidth = usernameLabel.frame.size.width
+        
         // Initialization code
     }
 
