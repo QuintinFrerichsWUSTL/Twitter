@@ -10,6 +10,10 @@ import UIKit
 
 class TwitterTableViewCell: UITableViewCell {
 
+    
+    
+    @IBOutlet weak var retweetsLabel: UILabel!
+    @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -50,6 +54,10 @@ class TwitterTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBAction func onFavorite(sender: AnyObject) {
+    }
+    
+    @IBOutlet weak var onRetweet: UIButton!
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
