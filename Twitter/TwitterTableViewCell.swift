@@ -16,14 +16,14 @@ class TwitterTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     var tweet: Tweet!{
         didSet{
-//            if tweet.createdAtString != nil{
-//            timeLabel.text = tweet.createdAtString
-//            }
-//            else{
-//                timeLabel.text = nil
-//            }
-            if tweet.profilepictureURl != nil{
-             profileImageView.setImageWithURL(tweet.profilepictureURl!)
+            if tweet.createdAtString != nil{
+            timeLabel.text = tweet.convertedDate
+            }
+            else{
+                timeLabel.text = nil
+            }
+            if tweet.user!.profileImageURL != nil{
+             profileImageView.setImageWithURL(tweet.user!.profileImageURL!)
             }
            
             if tweet.username != nil{

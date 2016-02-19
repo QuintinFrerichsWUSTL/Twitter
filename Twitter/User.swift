@@ -22,7 +22,10 @@ class User: NSObject {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageURL = dictionary["profile_image_url"] as? NSURL
+     let profilepictureURLString = dictionary["profile_image_url_https"] as? String
+        if let profilepictureURLString = profilepictureURLString{
+            profileImageURL = NSURL(string:profilepictureURLString)
+        }
         tagline = dictionary["description"] as? String
     }
     func logout(){
