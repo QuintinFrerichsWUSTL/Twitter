@@ -18,8 +18,14 @@ class TwitterTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
+    var favoriteCount: Int = 0
+    var retweetedCount: Int = 0
     var tweet: Tweet!{
         didSet{
+           
+            favoritesLabel.text = "\(favoriteCount)"
+            retweetsLabel.text = "\(retweetedCount)"
+            
             if tweet.createdAtString != nil{
             timeLabel.text = tweet.convertedDate
             }
@@ -55,9 +61,19 @@ class TwitterTableViewCell: UITableViewCell {
     }
 
     @IBAction func onFavorite(sender: AnyObject) {
+        favoriteCount++
+        favoritesLabel.text = "\(favoriteCount)"
+        print(favoriteCount)
     }
     
-    @IBOutlet weak var onRetweet: UIButton!
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+       retweetedCount++
+        retweetsLabel.text = "\(retweetedCount)"
+        print(retweetedCount)
+    }
+    
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
