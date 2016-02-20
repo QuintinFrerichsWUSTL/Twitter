@@ -24,10 +24,19 @@ class TwitterTableViewCell: UITableViewCell {
     var retweetedCount: Int = 0
     var tweet: Tweet!{
         didSet{
-           
+             if(favoriteCount>=1){
             favoritesLabel.text = "\(favoriteCount)"
+            }
+             else{
+                favoritesLabel.text = ""
+            }
+            if(retweetedCount >= 1)
+            {
             retweetsLabel.text = "\(retweetedCount)"
-            
+            }
+            else{
+                retweetsLabel.text = ""
+            }
             if tweet.createdAtString != nil{
             timeLabel.text = tweet.convertedDate
             }
@@ -64,17 +73,19 @@ class TwitterTableViewCell: UITableViewCell {
 
     @IBAction func onFavorite(sender: AnyObject) {
         favoriteCount++
+       
         favoritesLabel.text = "\(favoriteCount)"
+        
+       // favsButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Highlighted)
         //favoritesLabel.textColor = UIColor(red: 152, green: 251, blue: 151, alpha: 0.8)
-        print(favoriteCount)
     }
     
     
     @IBAction func onRetweet(sender: AnyObject) {
        retweetedCount++
-        retweetsLabel.text = "\(retweetedCount)"
+            retweetsLabel.text = "\(retweetedCount)"
+        // retweetButton.setImage(UIImage(named:"retweet-action-on-green"), forState: UIControlState.Highlighted)
         //retweetsLabel.textColor = UIColor(red: 152, green: 251, blue: 151, alpha: 0.8)
-        print(retweetedCount)
     }
     
 
