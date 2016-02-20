@@ -10,7 +10,9 @@ import UIKit
 
 class TwitterTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var retweetButton: UIButton!
     
+    @IBOutlet weak var favsButton: UIButton!
     
     @IBOutlet weak var retweetsLabel: UILabel!
     @IBOutlet weak var favoritesLabel: UILabel!
@@ -63,6 +65,7 @@ class TwitterTableViewCell: UITableViewCell {
     @IBAction func onFavorite(sender: AnyObject) {
         favoriteCount++
         favoritesLabel.text = "\(favoriteCount)"
+        //favoritesLabel.textColor = UIColor(red: 152, green: 251, blue: 151, alpha: 0.8)
         print(favoriteCount)
     }
     
@@ -70,6 +73,7 @@ class TwitterTableViewCell: UITableViewCell {
     @IBAction func onRetweet(sender: AnyObject) {
        retweetedCount++
         retweetsLabel.text = "\(retweetedCount)"
+        //retweetsLabel.textColor = UIColor(red: 152, green: 251, blue: 151, alpha: 0.8)
         print(retweetedCount)
     }
     

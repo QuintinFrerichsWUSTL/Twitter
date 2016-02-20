@@ -16,6 +16,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tweeters: [Tweet]?
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents:UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -36,12 +40,18 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return 0
         }
     }
+    func refreshControlAction(refreshControl: UIRefreshControl){
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("TwitterTableViewCell", forIndexPath: indexPath) as! TwitterTableViewCell
         cell.tweet = tweeters![indexPath.row]
-        
-        
-        
+        cell.favsButton.setImage(UIImage(named: "like-action-off"), forState: UIControlState.Normal)
+        cell.retweetButton.setImage(UIImage(named:"retweet-action_default"), forState: UIControlState.Normal)
+        cell.favsButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Highlighted)
+        cell.retweetButton.setImage(UIImage(named:"retweet-action-on-green"), forState: UIControlState.Highlighted)
         return cell
         
     }
