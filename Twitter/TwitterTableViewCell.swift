@@ -75,17 +75,14 @@ class TwitterTableViewCell: UITableViewCell {
         favoriteCount++
        
         favoritesLabel.text = "\(favoriteCount)"
-        
-       // favsButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Highlighted)
-        //favoritesLabel.textColor = UIColor(red: 152, green: 251, blue: 151, alpha: 0.8)
+        favsButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
     }
     
     
     @IBAction func onRetweet(sender: AnyObject) {
-       retweetedCount++
+        retweetedCount++
             retweetsLabel.text = "\(retweetedCount)"
-        // retweetButton.setImage(UIImage(named:"retweet-action-on-green"), forState: UIControlState.Highlighted)
-        //retweetsLabel.textColor = UIColor(red: 152, green: 251, blue: 151, alpha: 0.8)
+        retweetButton.setImage(UIImage(named:"retweet-action-on-green"), forState: UIControlState.Normal)
     }
     
 

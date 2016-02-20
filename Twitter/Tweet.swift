@@ -17,10 +17,23 @@ class Tweet: NSObject {
     var convertedDate: String?
     var profilepictureURl: NSURL?
     init(dictionary: NSDictionary){
+        let calendar = NSCalendar.currentCalendar()
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         username = user?.name
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
+        
+//        var formatter = NSDateFormatter()
+//        createdAt = formatter.dateFromString(createdAtString!)
+//        
+//        if let timeCreation = createdAt{
+//        let dateComponent = NSDateComponents()
+//        dateComponent.hour = calendar.component(NSCalendarUnit.Hour, fromDate:createdAt!)
+//        dateComponent.minute = calendar.component(NSCalendarUnit.Minute, fromDate:createdAt!)
+//        let newDate = calendar.dateFromComponents(dateComponent)
+//        formatter.dateFormat = "HH:mm"
+//            convertedDate = formatter.stringFromDate(newDate!)
+//        }
         var formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)

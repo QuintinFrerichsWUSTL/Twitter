@@ -48,8 +48,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("TwitterTableViewCell", forIndexPath: indexPath) as! TwitterTableViewCell
         cell.tweet = tweeters![indexPath.row]
-        cell.favsButton.setImage(UIImage(named: "like-action-on-pressed-red"), forState: UIControlState.Normal)
-        cell.retweetButton.setImage(UIImage(named:"retweet-action-on-pressed_green"), forState: UIControlState.Normal)
+//        cell.favsButton.setImage(UIImage(named: "like-action-on-pressed-red"), forState: UIControlState.Normal)
+//        cell.retweetButton.setImage(UIImage(named:"retweet-action-on-pressed_green"), forState: UIControlState.Normal)
         
        
         return cell
