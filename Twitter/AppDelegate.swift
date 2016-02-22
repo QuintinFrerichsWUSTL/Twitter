@@ -15,13 +15,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        let storyboard = UIStoryboard(name: "Main", bundle:nil)
+//        let vc1 = storyboard.instantiateViewControllerWithIdentifier("ViewController")
+//            as! UINavigationController
+//        window?.rootViewController = vc1
+//        let tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+//        let tweetsViewController = tweetsNavigationController.topViewController as! TweetsViewController
+//        tweetsNavigationController.tabBarItem.title = "Timelines"
+//        tweetsNavigationController.tabBarItem.image = UIImage(named: "noun_17354")
+//        let profileNavigationController = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationCongroller") as! UINavigationController
+//        let profileViewController = profileNavigationController.topViewController as! TweetsViewController
+//        profileNavigationController.tabBarItem.title = "Me"
+//        profileNavigationController.tabBarItem.image = UIImage(named: "noun_16571")
+//        let tabBarController = UITabBarController()
+//        UITabBar.appearance().tintColor = UIColor(red:1.0, green: 0.1, blue: 0.1, alpha: 0.9)
+//        tabBarController.viewControllers = [tweetsNavigationController, profileNavigationController]
+//        window?.rootViewController = tabBarController
+//        window?.makeKeyAndVisible()
+
+        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         if User.currentUser != nil{
             print("Current user detected: \(User.currentUser?.name)")
-            var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
             window?.rootViewController = vc 
         }
         return true
+        
     }
     func userDidLogout(){
         var vc = storyboard.instantiateInitialViewController()! as UIViewController
