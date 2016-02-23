@@ -41,20 +41,24 @@ class DetailsViewController: UIViewController {
             numberRetweets = tweet.numRetweets!
             let username = tweet.username
             nameLabel.text = username
+            nameLabel.sizeToFit()
             let text = tweet.text
             textlabel.text = text
+            textlabel.sizeToFit()
         if tweet.convertedDate != nil{
             let timeStamp = tweet.convertedDate
             timeLabel.text = timeStamp
         }
             if tweet.numLikes != nil{
-                likesLabel.text = "\(tweet.numLikes)"
+                likesLabel.text = "\(numberLikes)"
+                likesLabel.sizeToFit()
             }
             else{
                 textlabel.text = ""
             }
             if tweet.numRetweets != nil{
-                retweetsLabel.text = "\(tweet.numRetweets)"
+                retweetsLabel.text = "\(numberRetweets)"
+                retweetsLabel.sizeToFit()
             }
             else{
                 retweetsLabel.text = ""
@@ -74,15 +78,17 @@ class DetailsViewController: UIViewController {
     
     @IBAction func onRetweet(sender: AnyObject) {
         numberRetweets++
+        retweetsLabel.textColor = UIColor(red: 0.6, green: 1.0, blue: 0.6, alpha: 1.0)
         retweetsLabel.text = "\(numberRetweets)"
        retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
+        
         
     }
     
     
     @IBAction func onLike(sender: AnyObject) {
         numberLikes++
-        
+        likesLabel.textColor = UIColor(red: 0.86, green: 0.08, blue: 0.24, alpha: 1.0)
         likesLabel.text = "\(numberLikes)"
         likeButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
     }

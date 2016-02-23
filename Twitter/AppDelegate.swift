@@ -17,26 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle:nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("MyNavigationController")
-            as! UINavigationController
-        window?.rootViewController = vc
-//        let vc1 = storyboard.instantiateViewControllerWithIdentifier("ViewController")
-//            as! UINavigationController
-//        window?.rootViewController = vc1
-//        let tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
-//        let tweetsViewController = tweetsNavigationController.topViewController as! TweetsViewController
-//        tweetsNavigationController.tabBarItem.title = "Timelines"
-//        tweetsNavigationController.tabBarItem.image = UIImage(named: "noun_17354")
-//        let profileNavigationController = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationCongroller") as! UINavigationController
-//        let profileViewController = profileNavigationController.topViewController as! TweetsViewController
-//        profileNavigationController.tabBarItem.title = "Me"
-//        profileNavigationController.tabBarItem.image = UIImage(named: "noun_16571")
-//        let tabBarController = UITabBarController()
-//        UITabBar.appearance().tintColor = UIColor(red:1.0, green: 0.1, blue: 0.1, alpha: 0.9)
-//        tabBarController.viewControllers = [tweetsNavigationController, profileNavigationController]
-//        window?.rootViewController = tabBarController
-//        window?.makeKeyAndVisible()
-
+        let tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("MyNavigationController") as! UINavigationController
+        let tweetsViewController = tweetsNavigationController.topViewController as! TweetsViewController
+        tweetsNavigationController.tabBarItem.title = "Home"
+        tweetsNavigationController.tabBarItem.image = UIImage(named: "home-1")
+        let profileNavigationController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
+        let profileViewController = profileNavigationController.topViewController as! ProfileViewController
+        profileNavigationController.tabBarItem.title = "Me"
+        profileNavigationController.tabBarItem.image = UIImage(named: "Twitter_logo_blue_32")
+        let tabBarController = UITabBarController()
+        UITabBar.appearance().tintColor = UIColor(red:0.25, green: 0.5, blue: 1.0, alpha: 1.0)
+        tabBarController.viewControllers = [tweetsNavigationController, profileNavigationController]
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
         
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
@@ -44,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Current user detected: \(User.currentUser?.name)")
             print(User.currentUser?.dictionary)
             let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            //window?.rootViewController = vc
+        window?.rootViewController = vc
         }
         return true
         
