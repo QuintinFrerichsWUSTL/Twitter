@@ -33,6 +33,7 @@ class User: NSObject {
         User.currentUser = nil
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+    
     }
     class var currentUser: User? {
         get {

@@ -63,6 +63,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+        
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         let cell = sender as! UITableViewCell

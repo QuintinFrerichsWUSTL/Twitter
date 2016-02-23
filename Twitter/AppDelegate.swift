@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+//        let appDomain = NSBundle.mainBundle().bundleIdentifier!
+//        
+//        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle:nil)
         let tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("MyNavigationController") as! UINavigationController
@@ -28,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         UITabBar.appearance().tintColor = UIColor(red:0.25, green: 0.5, blue: 1.0, alpha: 1.0)
         tabBarController.viewControllers = [tweetsNavigationController, profileNavigationController]
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
+        
         
         
 
@@ -37,15 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil{
             print("Current user detected: \(User.currentUser?.name)")
             print(User.currentUser?.dictionary)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-        window?.rootViewController = vc
+//            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
+//        window?.rootViewController = vc
+            window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
         }
         return true
         
     }
     func userDidLogout(){
-        var vc = storyboard.instantiateInitialViewController()! as UIViewController
+        let vc = storyboard.instantiateInitialViewController() as! ViewController
         window?.rootViewController = vc
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
