@@ -11,6 +11,8 @@ import UIKit
 class Tweet: NSObject {
     var user: User?
     var text: String?
+    var numLikes: Int?
+    var numRetweets: Int?
     var createdAtString: String?
     var createdAt: NSDate?
     var username: String?
@@ -21,6 +23,8 @@ class Tweet: NSObject {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         username = user?.name
         text = dictionary["text"] as? String
+        numLikes = dictionary["favorite_count"] as? Int
+        numRetweets = dictionary["retweet_count"] as? Int
         createdAtString = dictionary["created_at"] as? String
         
 //        var formatter = NSDateFormatter()

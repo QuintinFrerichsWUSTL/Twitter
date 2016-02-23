@@ -14,6 +14,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     var tweeters: [Tweet]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -28,6 +29,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
     TwitterClient.sharedInstance.homeTimeLineWithParams(nil, completion_:{(tweets,error)->() in
             self.tweeters = tweets
+        
             self.tableView.reloadData()
         })
         // Do any additional setup after loading the view.
@@ -48,8 +50,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("TwitterTableViewCell", forIndexPath: indexPath) as! TwitterTableViewCell
         cell.tweet = tweeters![indexPath.row]
-//        cell.favsButton.setImage(UIImage(named: "like-action-on-pressed-red"), forState: UIControlState.Normal)
-//        cell.retweetButton.setImage(UIImage(named:"retweet-action-on-pressed_green"), forState: UIControlState.Normal)
+
         
        
         return cell
@@ -62,6 +63,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let tweet = tweeters![indexPath!.row]
+        let detailsViewController = segue.destinationViewController as! DetailsViewController
+        detailsViewController.tweet = tweet
     }
 
     /*
