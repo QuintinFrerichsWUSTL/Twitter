@@ -17,6 +17,7 @@ class Tweet: NSObject {
     var createdAt: NSDate?
     var username: String?
     var convertedDate: String?
+    var convertedDate1: String?
     var profilepictureURl: NSURL?
     init(dictionary: NSDictionary){
         let calendar = NSCalendar.currentCalendar()
@@ -38,12 +39,11 @@ class Tweet: NSObject {
 //        formatter.dateFormat = "HH:mm"
 //            convertedDate = formatter.stringFromDate(newDate!)
 //        }
-        var formatter = NSDateFormatter()
+        let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         convertedDate = formatter.stringFromDate(createdAt!)
-        
         
     }
     class func tweetsWithArray(array: [NSDictionary])-> [Tweet]{

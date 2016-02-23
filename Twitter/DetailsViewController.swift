@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-
+   var tweet: Tweet!
     @IBOutlet weak var replyButton: UIButton!
     
     @IBOutlet weak var retweetButton: UIButton!
@@ -31,7 +31,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var twitterNameLabel: UILabel!
     var numberLikes: Int = 0
     var numberRetweets: Int = 0
-    var tweet: Tweet!
+ 
     
     
     
@@ -43,6 +43,10 @@ class DetailsViewController: UIViewController {
             nameLabel.text = username
             let text = tweet.text
             textlabel.text = text
+        if tweet.convertedDate != nil{
+            let timeStamp = tweet.convertedDate
+            timeLabel.text = timeStamp
+        }
             if tweet.numLikes != nil{
                 likesLabel.text = "\(tweet.numLikes)"
             }

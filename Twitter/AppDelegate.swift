@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("MyNavigationController")
+            as! UINavigationController
+        window?.rootViewController = vc
 //        let vc1 = storyboard.instantiateViewControllerWithIdentifier("ViewController")
 //            as! UINavigationController
 //        window?.rootViewController = vc1
@@ -41,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Current user detected: \(User.currentUser?.name)")
             print(User.currentUser?.dictionary)
             let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            window?.rootViewController = vc 
+            //window?.rootViewController = vc
         }
         return true
         
